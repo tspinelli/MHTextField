@@ -17,7 +17,7 @@
 @property (nonatomic, setter = setEmailField:) BOOL isEmailField;
 @property (nonatomic, setter = setDateField:) BOOL isDateField;
 @property (nonatomic, setter = setTimeField:) BOOL isTimeField;
-@property (nonatomic, readonly) BOOL isValid;
+@property (nonatomic, assign) BOOL isValid;
 
 - (BOOL) validate;
 - (void) setDateFieldWithFormat:(NSString *)dateFormat;
