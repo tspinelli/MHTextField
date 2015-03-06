@@ -113,6 +113,11 @@
 
 - (void) nextButtonIsClicked:(id)sender{
     NSInteger tagIndex = self.tag;
+    
+    if ((tagIndex + 1) >= [self.textFields count]) {
+        [self doneButtonIsClicked:sender];
+        return;
+    }
     MHTextField *textField =  [self.textFields objectAtIndex:++tagIndex];
     
     while (!textField.isEnabled && tagIndex < [self.textFields count])
@@ -211,8 +216,10 @@
     CGRect aRect = self.window.bounds;
     
     aRect.origin.y = -scrollView.contentOffset.y;
-    aRect.size.height -= keyboardSize.height + self.toolbar.frame.size.height + 22;
-    
+    aRect.size.height -= keyboardSize.height  + 22;
+    if (toolbar) {
+        aRect.size.height -= self.toolbar.frame.size.height;
+    }
     CGPoint textRectBoundary = CGPointMake(textFieldRect.origin.x, textFieldRect.origin.y + textFieldRect.size.height);
     
     if (!CGRectContainsPoint(aRect, textRectBoundary) || scrollView.contentOffset.y > 0) {
@@ -326,7 +333,10 @@
     }
     
     [self selectInputView:textField];
-    [self setInputAccessoryView:toolbar];
+    
+    if (toolbar) {
+        [self setInputAccessoryView:toolbar];
+    }
     
     [self setToolbarCommand:NO];
 }

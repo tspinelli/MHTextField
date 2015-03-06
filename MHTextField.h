@@ -21,6 +21,7 @@
 
 - (BOOL) validate;
 - (void) setDateFieldWithFormat:(NSString *)dateFormat;
+- (void) nextButtonIsClicked:(id)sender;
 
 /*
  Invoked when text field is disabled or input is invalid. Override to set your own tint or background color.
