@@ -293,6 +293,13 @@
     
     [self scrollToField];
     
+    for (UIView *view in self.superview.subviews) {
+        if ([view isKindOfClass:[MHTextField class]]) {
+            MHTextField *mhTextfield = (MHTextField*)view;
+            mhTextfield.keyboardSize = keyboardSize;
+        }
+    }
+    
     self.keyboardIsShown = YES;
 }
 
@@ -339,6 +346,8 @@
     }
     
     [self setToolbarCommand:NO];
+    
+    [self scrollToField];
 }
 
 - (void)textFieldDidEndEditing:(NSNotification *) notification{
